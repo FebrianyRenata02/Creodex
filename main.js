@@ -1,7 +1,7 @@
 const app = document.getElementById("app");
 
 /* ============================
-   NAVBAR (REVISI STRUKTUR UNTUK RESPONSIF)
+   NAVBAR
 ============================ */
 const navbar = document.createElement("header");
 navbar.className = "navbar";
@@ -16,30 +16,29 @@ logo.textContent = "CREODEX DIGITAL INDONESIA";
 
 // MENU
 const nav = document.createElement("nav");
-nav.className = "menu"; // Ini akan jadi menu mobile
+nav.className = "menu";
 
 const menuList = ["Home", "About", "Services", "Package", "Contact"];
 
 menuList.forEach(item => {
     const a = document.createElement("a");
-    // === MODIFIKASI: Mengarahkan "Home" ke ID "home" ===
+    // Mengarahkan ke ID section
     if (item === "Home") {
         a.href = "#home";
     } else {
-        a.href = `#${item.toLowerCase()}`; // Mengubah href ke id section (jika ada)
+        a.href = `#${item.toLowerCase()}`;
     }
-    // ==================================================
     a.textContent = item;
     nav.appendChild(a);
 });
 
-// BUTTON NAV (Tetap di desktop, disembunyikan di mobile lewat CSS)
+// BUTTON NAV
 const navBtn = document.createElement("a");
 navBtn.href = "#";
 navBtn.className = "btn-nav";
 navBtn.textContent = "Get Started";
 
-// *** START: PENAMBAHAN HAMBURGER ICON ***
+// HAMBURGER ICON
 const hamburgerBtn = document.createElement("button");
 hamburgerBtn.className = "hamburger";
 hamburgerBtn.innerHTML = `
@@ -52,7 +51,7 @@ hamburgerBtn.innerHTML = `
 hamburgerBtn.addEventListener('click', () => {
     nav.classList.toggle('active');
     hamburgerBtn.classList.toggle('active');
-    document.body.classList.toggle('no-scroll'); // Opsional: mencegah scroll saat menu terbuka
+    document.body.classList.toggle('no-scroll');
 });
 
 // Menutup menu mobile saat mengklik link
@@ -63,20 +62,12 @@ nav.querySelectorAll('a').forEach(link => {
         document.body.classList.remove('no-scroll');
     });
 });
-// *** END: PENAMBAHAN HAMBURGER ICON ***
 
-// ===============================================
-// ASSEMBLE NAVBAR (URUTAN PENTING UNTUK FLEXBOX)
-// ===============================================
-// 1. Logo
+// ASSEMBLE NAVBAR
 navContainer.appendChild(logo);
-// 2. Hamburger (penting agar bisa di-absolute/fixed di pojok kanan oleh CSS)
 navContainer.appendChild(hamburgerBtn);
-// 3. Menu (berada di tengah di desktop)
 navContainer.appendChild(nav);
-// 4. Tombol Nav (berada di kanan di desktop)
 navContainer.appendChild(navBtn);
-// -----------------------------------------------
 
 navbar.appendChild(navContainer);
 app.appendChild(navbar);
@@ -87,7 +78,7 @@ app.appendChild(navbar);
 
 const hero = document.createElement("section");
 hero.className = "hero";
-hero.id = "home"; // === MODIFIKASI: Menambahkan ID "home" di sini ===
+hero.id = "home";
 
 const heroContainer = document.createElement("div");
 heroContainer.className = "container hero-flex";
@@ -106,23 +97,20 @@ heroDesc.innerHTML = "Bangun & Tingkatkan kepercayaan bisnismu dengan website de
 const heroBtns = document.createElement("div");
 heroBtns.className = "hero-btns";
 
-// Get Started (DIJAGA)
 const btnStart = document.createElement("a");
 btnStart.href = "#";
 btnStart.className = "btn-primary";
 btnStart.textContent = "Get Started";
 
-// Susun button
 heroBtns.appendChild(btnStart);
 
-// Masukkan text
 heroText.appendChild(heroTitle);
 heroText.appendChild(heroDesc);
 heroText.appendChild(heroBtns);
 
 // IMAGE
 const heroImgWrap = document.createElement("div");
-heroImgWrap.className = "hero-img animated-float"; // <<< PERUBAHAN: DITAMBAHKAN CLASS ANIMASI
+heroImgWrap.className = "hero-img animated-float"; // <<< Class untuk animasi naik-turun
 
 const heroImg = document.createElement("img");
 heroImg.src = "/img/hero-img.png"; // ganti sesuai nama file kamu
@@ -135,7 +123,6 @@ heroContainer.appendChild(heroText);
 heroContainer.appendChild(heroImgWrap);
 hero.appendChild(heroContainer);
 
-// Render to page
 app.appendChild(hero);
 
 /* ============================
@@ -146,7 +133,6 @@ const aboutSection = document.createElement("section");
 aboutSection.className = "about-skill";
 aboutSection.id = "about";
 
-// WRAPPER
 const aboutContainer = document.createElement("div");
 aboutContainer.className = "container about-skill-grid";
 
@@ -239,7 +225,7 @@ skills.forEach(skill => {
     skillBox.appendChild(wrap);
 });
 
-/* ========= ASSEMBLE ========= */
+/* ========= ASSEMBLE ABOUT/SKILL ========= */
 
 aboutLeft.appendChild(aboutTitle);
 aboutLeft.appendChild(aboutLine);
@@ -328,7 +314,7 @@ serviceList.forEach(svc => {
     serviceGrid.appendChild(box);
 });
 
-/* ASSEMBLE */
+/* ASSEMBLE SERVICES */
 servicesContainer.appendChild(servicesTitle);
 servicesContainer.appendChild(servicesLine);
 servicesContainer.appendChild(servicesSub);
@@ -522,7 +508,7 @@ packageList.forEach(pkg => {
     pricingGrid.appendChild(card);
 });
 
-/* ASSEMBLE */
+/* ASSEMBLE PRICING */
 pricingContainer.appendChild(pricingTitle);
 pricingContainer.appendChild(pricingLine);
 pricingContainer.appendChild(pricingSub);
@@ -566,7 +552,6 @@ leftBox.className = "contact-info-box";
 /* address */
 const infoAddress = document.createElement("div");
 infoAddress.className = "info-item";
-// Perhatikan: Ikon font-awesome (fas) perlu di load di HTML Anda
 infoAddress.innerHTML = `
     <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
     <div>
@@ -627,7 +612,7 @@ rightBox.innerHTML = `
     </form>
 `;
 
-/* assemble */
+/* assemble contact */
 contactGrid.appendChild(leftBox);
 contactGrid.appendChild(rightBox);
 
@@ -641,11 +626,11 @@ contactSection.appendChild(contactContainer);
 app.appendChild(contactSection);
 
 /* ============================
-   TEAM SECTION (PENGGANTI PRE-FOOTER)
+   TEAM SECTION
 ============================ */
 
 const teamSection = document.createElement("section");
-teamSection.className = "team-section"; // Class baru untuk section team
+teamSection.className = "team-section";
 
 const teamContainer = document.createElement("div");
 teamContainer.className = "container";
@@ -659,7 +644,7 @@ const teamLine = document.createElement("div");
 teamLine.className = "section-line";
 
 const teamSub = document.createElement("p");
-teamSub.className = "team-sub"; // Class baru untuk subjudul team
+teamSub.className = "team-sub";
 teamSub.textContent = "Necessitatibus eius consetetur ex aliquid fuga eum quidem sint consectetur velit";
 
 /* TEAM MEMBER DATA */
@@ -668,58 +653,56 @@ const teamMembers = [{
         title: "Chief Executive Officer",
         desc: "Explicabo voluptatem mollitia et et repetai qui dolirum quasi lorem ipsum dolote is",
         social: ["X", "ⓕ", "ⓘ", "in"],
-        img: "https://www.alphajwc.com/wp-content/uploads/2023/04/portrait-cheerful-attractive-handsome-businessman-holding-hands-with-confident-face-looking-camera-standing-grey-background.jpg" // Ganti dengan path gambar anggota tim
+        img: "https://www.alphajwc.com/wp-content/uploads/2023/04/portrait-cheerful-attractive-handsome-businessman-holding-hands-with-confident-face-looking-camera-standing-grey-background.jpg"
     },
     {
         name: "Sarah Jhonson",
         title: "Product Manager",
         desc: "Aut maiores voluptates amet et quas prasentium qui senda para lorem ipsum dulore is",
         social: ["X", "ⓕ", "ⓘ", "in"],
-        img: "https://s44783.pcdn.co/wp-content/uploads/2023/11/Digital-Product-Manager-1024x536.png" // Ganti dengan path gambar anggota tim
+        img: "https://s44783.pcdn.co/wp-content/uploads/2023/11/Digital-Product-Manager-1024x536.png"
     },
     {
         name: "William Anderson",
         title: "CTO",
         desc: "Quisqam fugaciis cum velit labroum corrupti fugi reum quia lorem ipsum dulatais",
         social: ["X", "ⓕ", "ⓘ", "in"],
-        img: "https://storage.googleapis.com/ekrutassets/home/deploy/ekrut/releases/20210709094712/public/ckeditor_assets/pictures/7355/content_unnamed_%281%29.png" // Ganti dengan path gambar anggota tim
+        img: "https://storage.googleapis.com/ekrutassets/home/deploy/ekrut/releases/20210709094712/public/ckeditor_assets/pictures/7355/content_unnamed_%281%29.png"
     },
     {
         name: "Amanda Jepson",
         title: "Accountant",
         desc: "Dolorum tempora officiis odit laborios officiios officiis et et accessmum dulote iis",
         social: ["X", "ⓕ", "ⓘ", "in"],
-        img: "https://t3.ftcdn.net/jpg/03/27/29/54/360_F_327295497_1tuc1lHUlUqNOcILvesVlV3lLOzroi8g.jpg" // Ganti dengan path gambar anggota tim
+        img: "https://t3.ftcdn.net/jpg/03/27/29/54/360_F_327295497_1tuc1lHUlUqNOcILvesVlV3lLOzroi8g.jpg"
     },
 ];
 
 /* GRID */
 const teamGrid = document.createElement("div");
-teamGrid.className = "team-grid"; // Class baru untuk grid kartu team
+teamGrid.className = "team-grid";
 
 /* GENERATE TEAM CARDS */
 teamMembers.forEach(member => {
     const card = document.createElement("div");
-    card.className = "team-card"; // Class baru untuk kartu team
+    card.className = "team-card";
 
-    // Membungkus gambar agar bisa diterapkan CSS .member-img di CSS Anda
     const imgWrap = document.createElement("div");
-    imgWrap.className = "member-img"; // Wrapper untuk gambar
+    imgWrap.className = "member-img";
 
     const img = document.createElement("img");
     img.src = member.img;
     img.alt = member.name;
-    img.className = "team-img"; // Class untuk gambar (gunakan .member-img img di CSS)
+    img.className = "team-img";
     imgWrap.appendChild(img);
 
-    // Konten Info
     const content = document.createElement("div");
-    content.className = "member-info"; // Menggunakan class member-info sesuai CSS
+    content.className = "member-info";
 
-    const h3 = document.createElement("h4"); // Menggunakan h4 agar sesuai dengan CSS .member-info h4
+    const h3 = document.createElement("h4");
     h3.textContent = member.name;
 
-    const h4 = document.createElement("span"); // Menggunakan span agar sesuai dengan CSS .member-info span
+    const h4 = document.createElement("span");
     h4.textContent = member.title;
 
     const p = document.createElement("p");
@@ -729,21 +712,18 @@ teamMembers.forEach(member => {
     content.appendChild(h4);
     content.appendChild(p);
 
-    // Ikon Sosial
     const socialDiv = document.createElement("div");
-    socialDiv.className = "member-social"; // Class untuk social links di team
+    socialDiv.className = "member-social";
 
-    // Menambahkan ikon sosial
     member.social.forEach(icon => {
         const a = document.createElement("a");
         a.href = "#";
-        a.className = "social-icon"; // Menggunakan class social-icon agar sesuai dengan CSS .member-social .social-icon
+        a.className = "social-icon";
         a.textContent = icon;
         socialDiv.appendChild(a);
     });
 
-    // Menambahkan elemen ke kartu
-    card.appendChild(imgWrap); // Tambahkan wrapper gambar
+    card.appendChild(imgWrap);
     card.appendChild(content);
     card.appendChild(socialDiv);
 
@@ -760,7 +740,7 @@ teamSection.appendChild(teamContainer);
 app.appendChild(teamSection);
 
 /* ============================
-   FOOTER (REVISI STRUKTUR COPYRIGHT)
+   FOOTER
 ============================ */
 
 const footer = document.createElement("footer");
@@ -811,7 +791,6 @@ const ulLinks = document.createElement("ul");
 ulLinks.className = "footer-links";
 linksList.forEach(text => {
     const li = document.createElement("li");
-    // Menggunakan span/i untuk ikon chevron
     li.innerHTML = `<i class="chevron-icon">▶</i> <a href="#">${text}</a>`;
     ulLinks.appendChild(li);
 });
@@ -901,3 +880,51 @@ scrollTopBtn.className = "scroll-top-btn";
 scrollTopBtn.innerHTML = "⬆"; // Tombol panah ke atas
 
 app.appendChild(scrollTopBtn);
+
+
+/* ============================
+   SMOOTH SCROLL HANDLER 
+============================ */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const hash = this.getAttribute('href');
+
+        // Lewati jika hanya "#" atau jika elemen target tidak ada
+        if (hash === '#' || !document.getElementById(hash.substring(1))) return;
+
+        e.preventDefault();
+
+        // Ambil target ID
+        const targetId = hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            // Opsional: Untuk mengupdate URL hash tanpa melompat/mengganggu smooth scroll
+            if (hash !== '#home' && hash !== '#') {
+                history.pushState(null, null, hash);
+            }
+        }
+    });
+});
+
+// Penanganan khusus untuk tombol scroll-top (kembali ke #home atau paling atas)
+scrollTopBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // Scroll ke elemen 'home' atau langsung ke bagian atas dokumen jika 'home' tidak ditemukan
+    const targetElement = document.getElementById('home') || document.body;
+
+    targetElement.scrollIntoView({
+        behavior: 'smooth'
+    });
+
+    // Opsional: Membersihkan hash dari URL jika kembali ke atas
+    if (window.location.hash) {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+});
