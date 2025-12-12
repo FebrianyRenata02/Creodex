@@ -122,7 +122,7 @@ heroText.appendChild(heroBtns);
 
 // IMAGE
 const heroImgWrap = document.createElement("div");
-heroImgWrap.className = "hero-img";
+heroImgWrap.className = "hero-img animated-float"; // <<< PERUBAHAN: DITAMBAHKAN CLASS ANIMASI
 
 const heroImg = document.createElement("img");
 heroImg.src = "/img/hero-img.png"; // ganti sesuai nama file kamu
@@ -138,9 +138,9 @@ hero.appendChild(heroContainer);
 // Render to page
 app.appendChild(hero);
 
-/* (SISA KODE LAINNYA TIDAK DIUBAH) */
-// ... (aboutSection, servicesSection, pricingSection, contactSection, teamSection, footer, scrollTopBtn)
-// ... (Sisa kode Anda yang lain di bagian bawah tetap sama)
+/* ============================
+   ABOUT + SKILL SECTION
+============================ */
 
 const aboutSection = document.createElement("section");
 aboutSection.className = "about-skill";
