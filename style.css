@@ -13,6 +13,11 @@ body {
   color: #fff; /* Default color untuk elemen yang ada di background gelap */
 }
 
+/* REKOMENDASI SMOOTH SCROLL CSS MODERN */
+html {
+  scroll-behavior: smooth; /* Membuat gulir halus (smooth scroll) secara native */
+}
+
 /* Tambahkan class ini untuk mencegah scroll body saat menu mobile aktif */
 body.no-scroll {
   overflow: hidden;
@@ -31,13 +36,12 @@ body.no-scroll {
 .navbar {
   width: 100%;
   padding: 25px 0;
-  /* PERUBAHAN UTAMA: Fixed position */
-  background: #2f4e80; /* Tambahkan background agar tidak transparan saat fixed */
-  position: fixed; /* FIXED */
+  background: #2f4e80;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ditingkatkan agar pasti di atas semua konten */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sedikit lebih tebal */
 }
 
 .navbar .container {
@@ -59,10 +63,26 @@ body.no-scroll {
   font-size: 15px;
   text-decoration: none;
   transition: 0.2s;
+  position: relative; /* Untuk efek hover underline */
 }
 
 .menu a:hover {
   color: #fff;
+}
+/* Efek Hover Underline */
+.menu a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #61c3ff;
+  transition: width 0.3s ease-out;
+}
+
+.menu a:hover::after {
+  width: 100%;
 }
 
 .btn-nav {
@@ -70,20 +90,24 @@ body.no-scroll {
   background: #61c3ff;
   color: #fff;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 25px; /* Sedikit lebih bulat */
   font-weight: 600;
   transition: 0.3s;
 }
 
+.btn-nav:hover {
+  background: #3c9fe3;
+}
+
 /* --- HAMBURGER MENU STYLING --- */
 .hamburger {
-  display: none; /* Sembunyikan di desktop */
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 10px;
-  position: relative; /* Agar z-index bekerja */
-  z-index: 201; /* Pastikan di atas menu mobile */
+  position: relative;
+  z-index: 2001; /* Pastikan di atas menu mobile */
 }
 
 .hamburger .bar {
@@ -107,14 +131,13 @@ body.no-scroll {
 }
 
 /* ======================================
-   HERO SECTION (REVISI JARAK MAKSIMAL)
+   HERO SECTION
 ====================================== */
 
 .hero {
   width: 100%;
-  /* Padding bawah disisakan 120px */
   padding: 120px 0;
-  /* REVISI AKHIR: Peningkatan padding-top menjadi 180px untuk memastikan jarak yang cukup dari navbar fixed */
+  /* Jarak dari navbar fixed */
   padding-top: 180px;
   background: #2f4e80;
 }
@@ -126,6 +149,10 @@ body.no-scroll {
 }
 
 /* Text */
+.hero-text {
+  max-width: 50%; /* Batasi lebar teks di desktop */
+}
+
 .hero-text h1 {
   font-size: 48px;
   font-weight: 800;
@@ -150,12 +177,21 @@ body.no-scroll {
   color: #fff;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 25px; /* Konsisten dengan btn-nav */
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #3c9fe3;
 }
 
 /* Hero Image */
+.hero-img {
+  max-width: 50%; /* Batasi lebar gambar di desktop */
+}
 .hero-img img {
   width: 520px;
+  max-width: 100%;
 }
 
 /* ======================================
@@ -289,7 +325,7 @@ body.no-scroll {
 
 .service-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1); /* Sedikit lebih kentara */
 }
 
 .service-icon {
@@ -348,6 +384,7 @@ body.no-scroll {
 .pricing-card.highlight {
   border-top: 4px solid #28a7f0;
   transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Lebih menonjol */
 }
 
 .pricing-card h3 {
@@ -452,6 +489,7 @@ body.no-scroll {
 }
 
 .info-item .icon {
+  flex-shrink: 0; /* Pastikan ikon tidak menyusut */
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -501,11 +539,17 @@ body.no-scroll {
   border-radius: 4px;
   margin: 10px 0;
   font-size: 14px;
+  color: #333; /* Pastikan teks input terlihat */
 }
 
 .form-row {
   display: flex;
   gap: 15px;
+}
+/* Menargetkan input di dalam form-row agar berbagi lebar */
+.form-row input {
+  margin: 10px 0;
+  width: 50%;
 }
 
 .send-btn {
@@ -524,12 +568,12 @@ body.no-scroll {
 }
 
 /* ======================================
-   TEAM SECTION (MENGGANTIKAN PRE-FOOTER)
+   TEAM SECTION
 ====================================== */
 
 .team-section {
   padding: 80px 0;
-  background: #f7f9fc; /* Background yang sedikit abu-abu */
+  background: #f7f9fc;
   text-align: center;
 }
 
@@ -556,19 +600,38 @@ body.no-scroll {
   align-items: center;
   gap: 20px;
   text-align: left;
-  position: relative; /* Penting untuk social links */
+  position: relative;
+  overflow: hidden; /* Penting untuk menyembunyikan social saat non-hover */
+  transition: 0.3s;
 }
 
-/* WRAPPER GAMBAR (sesuai kode JS final) */
+.team-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(43, 166, 228, 0.1); /* Warna overlay saat hover */
+  transition: left 0.3s ease-out;
+  z-index: 1;
+}
+
+.team-card:hover::before {
+  left: 0;
+}
+
+/* WRAPPER GAMBAR */
 .member-img {
-  display: flex; /* Untuk memastikan gambar di tengah jika wrapper lebih besar */
+  display: flex;
   align-items: center;
+  z-index: 2; /* Di atas overlay */
 }
 
 /* UKURAN GAMBAR TIM */
 .member-img img {
-  width: 60px; /* Diperkecil menjadi 60px */
-  height: 60px; /* Diperkecil menjadi 60px */
+  width: 70px; /* Diperbesar sedikit dari 60px */
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
@@ -577,6 +640,7 @@ body.no-scroll {
 
 .member-info {
   flex-grow: 1;
+  z-index: 2; /* Di atas overlay */
 }
 
 .member-info h4 {
@@ -596,33 +660,36 @@ body.no-scroll {
   font-size: 14px;
   color: #666;
   line-height: 1.5;
-  margin-bottom: 15px; /* Jarak sebelum social link pada layout mobile */
+  margin-bottom: 0;
+  max-width: 80%; /* Batasi lebar deskripsi agar social icon muat */
 }
 
 .member-social {
-  position: absolute; /* Mengatur social links di dalam card */
-  right: 30px;
+  position: absolute;
+  right: -50px; /* Sembunyikan di luar card */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px; /* Ditingkatkan dari 5px */
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: all 0.3s ease-in-out;
+  z-index: 3;
 }
 
 /* Hover effect for social links */
 .team-card:hover .member-social {
   opacity: 1;
+  right: 20px; /* Munculkan di posisi 20px dari kanan */
 }
 
 /* UKURAN IKON SOSIAL TIM */
 .member-social .social-icon {
-  width: 25px; /* Diperkecil menjadi 25px */
-  height: 25px; /* Diperkecil menjadi 25px */
+  width: 30px; /* Diperbesar dari 25px */
+  height: 30px;
   background: #e7f5ff;
   color: #2495dc;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -647,7 +714,6 @@ body.no-scroll {
 
 .footer-grid {
   display: grid;
-  /* Kolom 1 (Info Kontak) paling lebar, Kolom 2 & 3 (Links) sedang, Kolom 4 (Follow Us) sedang */
   grid-template-columns: 2.5fr 1fr 1fr 2fr;
   gap: 30px;
   padding-bottom: 40px;
@@ -764,8 +830,8 @@ body.no-scroll {
 .footer-bottom {
   border-top: 1px solid #eee;
   padding: 20px 0;
-  background: #fff; /* Tambahkan background agar beda dengan footer atas */
-  text-align: center; /* Teks copyright di tengah */
+  background: #fff;
+  text-align: center;
   font-size: 14px;
   color: #555;
 }
@@ -797,38 +863,57 @@ body.no-scroll {
   z-index: 999;
 }
 
+/* ====================================
+   CSS ANIMASI GAMBAR NAIK TURUN (Floating)
+==================================== */
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.hero-img.animated-float img {
+  animation: float 3s ease-in-out infinite;
+}
+
 /* ======================================
    MEDIA QUERIES (RESPONSIVE)
 ====================================== */
 
 @media (max-width: 992px) {
-  /* RESPONSIVE NAVIGASI MOBILE (Diaktifkan di bawah 992px) */
+  /* RESPONSIVE NAVIGASI MOBILE */
   .hamburger {
-    display: block; /* Tampilkan hamburger */
+    display: block;
     position: absolute;
     right: 20px;
     top: 25px;
   }
 
   .menu {
-    /* Menu default disembunyikan dan diubah tampilannya */
     position: fixed;
     top: 0;
-    right: -100%; /* Sembunyikan di luar layar */
+    right: -100%;
     width: 300px;
     height: 100vh;
-    background: #2f4e80; /* Background navbar hero */
+    background: #2f4e80;
     padding: 100px 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: right 0.3s ease-in-out;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-    z-index: 200;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5); /* Ditingkatkan */
+    z-index: 2000; /* Di bawah hamburger */
   }
 
   .menu.active {
-    right: 0; /* Tampilkan saat aktif */
+    right: 0;
   }
 
   .menu a {
@@ -838,18 +923,26 @@ body.no-scroll {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
     font-weight: 600;
+    /* Hilangkan efek underline di mobile */
+    left: 0;
+  }
+  .menu a::after {
+    content: none;
   }
 
   .btn-nav {
-    display: none; /* Sembunyikan tombol Get Started di mobile navbar */
+    display: none;
   }
 
   /* RESPONSIVE HERO */
   .hero-flex {
     flex-direction: column;
     text-align: center;
-    /* REVISI AKHIR: Jarak di mobile ditingkatkan ke 120px */
     padding-top: 120px;
+  }
+
+  .hero-text {
+    max-width: 100%;
   }
 
   .hero-text h1 {
@@ -858,12 +951,12 @@ body.no-scroll {
 
   .hero-img {
     margin-top: 40px;
+    max-width: 100%;
   }
 
   .hero-img img {
     width: 90%;
     max-width: 450px;
-    height: auto;
   }
 
   .hero-btns {
@@ -899,6 +992,15 @@ body.no-scroll {
     grid-template-columns: 1fr;
   }
 
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .form-row input {
+    width: 100%;
+    margin: 5px 0; /* Jarak yang lebih kecil */
+  }
+
   /* RESPONSIVE TEAM */
   .team-grid {
     grid-template-columns: 1fr;
@@ -914,13 +1016,24 @@ body.no-scroll {
     margin-bottom: 10px;
   }
 
+  .member-info p {
+    max-width: 100%;
+  }
+
   .member-social {
     /* Mengubah posisi absolute menjadi static agar berada di bawah konten */
     position: static;
     transform: none;
-    margin-top: 10px;
-    flex-direction: row; /* Kembali ke baris horizontal */
-    justify-content: center; /* Rata tengah */
+    margin-top: 15px; /* Jarak pemisah */
+    flex-direction: row;
+    justify-content: center;
+    right: 0;
+    opacity: 1; /* Selalu terlihat di mobile */
+  }
+
+  /* Hilangkan efek overlay di mobile */
+  .team-card::before {
+    content: none;
   }
 
   /* RESPONSIVE FOOTER */
@@ -942,8 +1055,8 @@ body.no-scroll {
     justify-content: center;
   }
 
-  .footer-col-1 .footer-contact {
-    text-align: center;
+  .footer-links li {
+    justify-content: center;
   }
 }
 
@@ -975,35 +1088,9 @@ body.no-scroll {
     margin: 5px auto 0;
   }
 
+  /* Pastikan semua teks rata tengah */
+  .footer-links li,
   .social-links {
     justify-content: center;
   }
-
-  .footer-links li {
-    justify-content: center;
-  }
-}
-
-/* ====================================
-   CSS ANIMASI GAMBAR NAIK TURUN (Floating)
-==================================== */
-
-/* 1. Definisikan Keyframes (Pergerakan) */
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    /* Naik sedikit */
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* 2. Aplikasikan Animasi ke Elemen */
-/* Pastikan Anda menargetkan gambar di dalam wrapper-nya */
-.hero-img.animated-float img {
-  animation: float 3s ease-in-out infinite; /* 4s adalah durasi, infinite berarti berulang terus */
 }
