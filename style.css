@@ -983,3 +983,27 @@ body.no-scroll {
     justify-content: center;
   }
 }
+
+/* ====================================
+   CSS ANIMASI GAMBAR NAIK TURUN (Floating)
+==================================== */
+
+/* 1. Definisikan Keyframes (Pergerakan) */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    /* Naik sedikit */
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* 2. Aplikasikan Animasi ke Elemen */
+/* Pastikan Anda menargetkan gambar di dalam wrapper-nya */
+.hero-img.animated-float img {
+  animation: float 3s ease-in-out infinite; /* 4s adalah durasi, infinite berarti berulang terus */
+}
