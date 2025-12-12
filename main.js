@@ -34,7 +34,7 @@ menuList.forEach(item => {
 
 // BUTTON NAV
 const navBtn = document.createElement("a");
-navBtn.href = "#";
+navBtn.href = "#contact"; // DIREVISI: Mengarah ke Contact
 navBtn.className = "btn-nav";
 navBtn.textContent = "Get Started";
 
@@ -98,7 +98,7 @@ const heroBtns = document.createElement("div");
 heroBtns.className = "hero-btns";
 
 const btnStart = document.createElement("a");
-btnStart.href = "#";
+btnStart.href = "#contact"; // DIREVISI: Mengarah ke Contact
 btnStart.className = "btn-primary";
 btnStart.textContent = "Get Started";
 
@@ -110,10 +110,10 @@ heroText.appendChild(heroBtns);
 
 // IMAGE
 const heroImgWrap = document.createElement("div");
-heroImgWrap.className = "hero-img animated-float"; // <<< Class untuk animasi naik-turun
+heroImgWrap.className = "hero-img animated-float";
 
 const heroImg = document.createElement("img");
-heroImg.src = "/img/hero-img.png"; // ganti sesuai nama file kamu
+heroImg.src = "/img/hero-img.png";
 heroImg.alt = "Hero Image";
 
 heroImgWrap.appendChild(heroImg);
@@ -631,6 +631,7 @@ app.appendChild(contactSection);
 
 const teamSection = document.createElement("section");
 teamSection.className = "team-section";
+teamSection.id = "team"; // Tambahkan ID untuk Team
 
 const teamContainer = document.createElement("div");
 teamContainer.className = "container";
@@ -779,19 +780,36 @@ col1.appendChild(footerLogo);
 col1.appendChild(addressP);
 col1.appendChild(contactInfo);
 
-// --- COLUMN 2: Useful Links ---
+// --- COLUMN 2: Useful Links (DIREVISI: Mengarahkan ke ID yang benar) ---
 const col2 = document.createElement("div");
 col2.className = "footer-col";
 
 const col2Title = document.createElement("h4");
 col2Title.textContent = "Useful Links";
 
-const linksList = ["Home", "About us", "Services", "Team", "Terms of service"];
+const linksData = [{
+        text: "Home",
+        href: "#home"
+    },
+    {
+        text: "About us",
+        href: "#about"
+    },
+    {
+        text: "Services",
+        href: "#services"
+    },
+    {
+        text: "Team",
+        href: "#team"
+    }
+];
+
 const ulLinks = document.createElement("ul");
 ulLinks.className = "footer-links";
-linksList.forEach(text => {
+linksData.forEach(item => {
     const li = document.createElement("li");
-    li.innerHTML = `<i class="chevron-icon">▶</i> <a href="#">${text}</a>`;
+    li.innerHTML = `<i class="chevron-icon">▶</i> <a href="${item.href}">${item.text}</a>`;
     ulLinks.appendChild(li);
 });
 
@@ -870,16 +888,21 @@ footer.appendChild(footerBottom);
 app.appendChild(footer);
 
 /* ============================
-   SCROLL TO TOP BUTTON
+   WHATSAPP BUTTON (FLOATING)
+   Mengganti Scroll to Top dengan WhatsApp
 ============================ */
 
-const scrollTopBtn = document.createElement("a");
-scrollTopBtn.href = "#";
-scrollTopBtn.id = "scroll-top";
-scrollTopBtn.className = "scroll-top-btn";
-scrollTopBtn.innerHTML = "⬆"; // Tombol panah ke atas
+const whatsappNumber = "6285137081114";
 
-app.appendChild(scrollTopBtn);
+const whatsappBtn = document.createElement("a");
+whatsappBtn.href = `https://wa.me/${whatsappNumber}`;
+whatsappBtn.target = "_blank";
+whatsappBtn.id = "whatsapp-float";
+whatsappBtn.className = "whatsapp-float-btn";
+// Menggunakan ikon Font Awesome
+whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
+
+app.appendChild(whatsappBtn);
 
 
 /* ============================
@@ -891,15 +914,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const hash = this.getAttribute('href');
 
         // Lewati jika hanya "#" atau jika elemen target tidak ada
-        if (hash === '#' || !document.getElementById(hash.substring(1))) return;
+        // Juga lewati jika ini adalah tautan WhatsApp karena sudah punya target="_blank"
+        if (hash === '#' || hash.includes('wa.me')) return;
 
-        e.preventDefault();
+        // Cek elemen target sebelum mencegah default
+        if (document.getElementById(hash.substring(1))) {
+            e.preventDefault();
 
-        // Ambil target ID
-        const targetId = hash.substring(1);
-        const targetElement = document.getElementById(targetId);
+            // Ambil target ID
+            const targetId = hash.substring(1);
+            const targetElement = document.getElementById(targetId);
 
-        if (targetElement) {
             targetElement.scrollIntoView({
                 behavior: 'smooth'
             });
@@ -910,21 +935,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         }
     });
-});
-
-// Penanganan khusus untuk tombol scroll-top (kembali ke #home atau paling atas)
-scrollTopBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    // Scroll ke elemen 'home' atau langsung ke bagian atas dokumen jika 'home' tidak ditemukan
-    const targetElement = document.getElementById('home') || document.body;
-
-    targetElement.scrollIntoView({
-        behavior: 'smooth'
-    });
-
-    // Opsional: Membersihkan hash dari URL jika kembali ke atas
-    if (window.location.hash) {
-        history.pushState("", document.title, window.location.pathname + window.location.search);
-    }
 });
