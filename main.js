@@ -582,11 +582,13 @@ infoEmail.innerHTML = `
     </div>
 `;
 
-/* MAP */
+/* MAP - DIREVISI untuk menggunakan lokasi Jakarta Timur */
 const mapFrame = document.createElement("iframe");
 mapFrame.className = "contact-map";
+// Menggunakan embed URL Google Maps yang fokus pada Jakarta Timur
+// (Koordinat: -6.2954, 106.9142, Search Query: Pasar Rebo, Jakarta Timur)
 mapFrame.src =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2798818522!2d-74.25986568775473!3d40.697670069208816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c250b8b6ff2c0f%3A0xdea7c68cbc89eac1!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sid!4v1691331234567";
+    "https://maps.google.com/maps?q=Kecamatan%20Pasar%20Rebo,%20Kota%20Jakarta%20Timur,%20Indonesia&t=&z=12&ie=UTF8&iwloc=&output=embed";
 
 leftBox.appendChild(infoAddress);
 leftBox.appendChild(infoPhone);
@@ -802,6 +804,10 @@ const linksData = [{
     {
         text: "Team",
         href: "#team"
+    },
+    {
+        text: "Terms of service",
+        href: "#"
     }
 ];
 
@@ -889,7 +895,6 @@ app.appendChild(footer);
 
 /* ============================
    WHATSAPP BUTTON (FLOATING)
-   Mengganti Scroll to Top dengan WhatsApp
 ============================ */
 
 const whatsappNumber = "6285137081114";
