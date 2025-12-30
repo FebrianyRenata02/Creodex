@@ -652,28 +652,28 @@ teamSub.textContent = "Necessitatibus eius consetetur ex aliquid fuga eum quidem
 
 /* TEAM MEMBER DATA */
 const teamMembers = [{
-        name: "Walter White",
+        name: "Nama",
         title: "Chief Executive Officer",
         desc: "Explicabo voluptatem mollitia et et repetai qui dolirum quasi lorem ipsum dolote is",
         social: ["X", "ⓕ", "ⓘ", "in"],
         img: "https://www.alphajwc.com/wp-content/uploads/2023/04/portrait-cheerful-attractive-handsome-businessman-holding-hands-with-confident-face-looking-camera-standing-grey-background.jpg"
     },
     {
-        name: "Sarah Jhonson",
+        name: "Nama",
         title: "Product Manager",
         desc: "Aut maiores voluptates amet et quas prasentium qui senda para lorem ipsum dulore is",
         social: ["X", "ⓕ", "ⓘ", "in"],
         img: "https://s44783.pcdn.co/wp-content/uploads/2023/11/Digital-Product-Manager-1024x536.png"
     },
     {
-        name: "William Anderson",
+        name: "Nama",
         title: "CTO",
         desc: "Quisqam fugaciis cum velit labroum corrupti fugi reum quia lorem ipsum dulatais",
         social: ["X", "ⓕ", "ⓘ", "in"],
         img: "https://storage.googleapis.com/ekrutassets/home/deploy/ekrut/releases/20210709094712/public/ckeditor_assets/pictures/7355/content_unnamed_%281%29.png"
     },
     {
-        name: "Amanda Jepson",
+        name: "Nama",
         title: "Accountant",
         desc: "Dolorum tempora officiis odit laborios officiios officiis et et accessmum dulote iis",
         social: ["X", "ⓕ", "ⓘ", "in"],
